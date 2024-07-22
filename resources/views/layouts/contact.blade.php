@@ -10,7 +10,13 @@
     <h1>Ici c'est le contact</h1>
 </body>
 </html> -->
+
+<!-- le extend permet de ne pas se rediriger sur la page controller -->
 @extends('layouts.master')
+@section('title')
+  Contact 
+
+@endsection
 @section('contenu')
 <h1>Bienvenu sur contact</h1>
 
