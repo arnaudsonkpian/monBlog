@@ -19,7 +19,7 @@ class ArticleFactory extends Factory
         return [
             'title'=>fake()->sentence(10),
             'body'=>fake()->paragraph(50),
-            'image'=>'public/images/blog.png',
+            'image'=>'/images/choisir-ecrn-pc-gamer-kiatoo.png',
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
@@ -12,23 +13,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = [
-            [
-                "title" => "Titre articles1",
-                "body" => "contenu de l'article1",
-            ],
+        $articles = Article::all();
 
-            [
-                "title" => "Titre articles2",
-                "body" => "contenu de l'article2",
-            ],
-
-            [
-                "title" => "Titre articles3",
-                "body" => "contenu de l'article3"
-            ],
-            
-        ];
         return view("layouts.articles", compact('articles'));
 
 
@@ -38,25 +24,34 @@ class ArticleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
 
-    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
-
+        dd($request->all());
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Article $article)
+    public function show($id)
     {
 
+        $article = Article::with('comments.user')
+            ->find($id);
+
+        return view('articles.show', ['article' => $article])
+        ;
+    }
+    //for create
+    public function create()
+    {
+
+        return view('articles.articles')
+        ;
     }
 
     /**
